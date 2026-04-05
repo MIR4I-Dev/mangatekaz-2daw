@@ -33,7 +33,6 @@ Para trabajar, necesitaréis tener **dos terminales** corriendo simultáneamente
 - **Admin:** `admin@mangatekaz.com` / Contraseña: `admin123`
 - **Cliente:** `gohan@mangatekaz.com` (o vegeta, o bulma) / Contraseña: `user123`
 
----
 
 InvalidArgumentException: View [catalogo] not found.
 
@@ -90,4 +89,4 @@ Hemos diseñado el carrito aprovechando la tabla `pedidos`. Funciona así:
 ```
 
 ---
-*Fin del informe del Backend.* 🐉
+*Fin del informe del Backend. EL DISEÑO DE LAS VISTAS Y COMO ESTÁ ORGANIZADO EL PROYECTO VIENE EN LA DOCUMENTACIÓN.* 🐉
