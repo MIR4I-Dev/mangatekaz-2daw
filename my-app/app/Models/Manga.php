@@ -11,7 +11,7 @@ class Manga extends Model
     protected $table = "mangas";
     protected $fillable = ['titulo', 'autor', 'volumen', 'precio', 'stock', 'descripcion', 'imagen', 'sagas_id'];
     protected $primaryKey = 'id';
-    public function sagas(){
+    public function saga(){
         return $this->belongsTo(Saga::class, 'sagas_id');
     }
     public function pedidos() {
