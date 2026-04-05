@@ -7,6 +7,8 @@ use App\Models\Saga;
 use App\Models\Pedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PedidoConfirmado;
 
 class PublicController extends Controller
 {
@@ -106,6 +108,8 @@ class PublicController extends Controller
         }
 
         $carrito->update(['estado' => 'atendido']);
+
+        Mail::to(Auth::user()->email)->send(new PedidoConfirmado($carrito));
 
         return redirect()->route('mis-pedidos')->with('success', 'Pedido confirmado con éxito.');
     }
