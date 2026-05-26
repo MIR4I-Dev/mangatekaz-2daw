@@ -15,7 +15,7 @@ class PublicController extends Controller
     public function catalogo(Request $request)
     {
         $mangas = Manga::with('saga')->when($request->saga_id, function ($query, $saga_id) {
-            $query->where('saga_id', $saga_id);
+            $query->where('sagas_id', $saga_id);
         })->get();
         $sagas = Saga::all();
 
