@@ -12,10 +12,12 @@ use App\Mail\PedidoConfirmado;
 
 class PublicController extends Controller
 {
-    public function catalogo()
+    public function catalogo(Request $request)
     {
-        $mangas = Manga::with('saga')->get();
-        $sagas  = Saga::all();
+        $mangas = Manga::with('saga')->when($request->saga_id, function ($query, $saga_id) {
+            $query->where('saga_id', $saga_id);
+        })->get();
+        $sagas = Saga::all();
 
         return view('catalogo', compact('mangas', 'sagas'));
     }
@@ -106,9 +108,6 @@ class PublicController extends Controller
         foreach ($carrito->mangas as $manga) {
             $manga->decrement('stock', $manga->pivot->cantidad);
         }
-
-        $carrito->update(['estado' => 'atendido']);
-
         Mail::to(Auth::user()->email)->send(new PedidoConfirmado($carrito));
 
         return redirect()->route('mis-pedidos')->with('success', 'Pedido confirmado con éxito.');

@@ -5,7 +5,9 @@ Esta guía documenta el estado actual del backend y las instrucciones necesarias
 ---
 
 ## 1. 📊 Estado Actual del Proyecto (Diagnóstico)
+
 El backend está **100% completado, securizado y funcional**.
+
 - **Base de Datos:** Estructurada con relaciones complejas (Sagas 1:N Mangas N:M Pedidos 1:N Usuarios).
 - **Control de Acceso:** Laravel Breeze implementado. Migraciones actualizadas para soportar roles (`admin`, `user`).
 - **Autenticación (Middleware):** Protecciones instaladas. Los usuarios anónimos solo ven el catálogo. Los clientes tienen carrito. El Admin tiene un panel protegido.
@@ -27,13 +29,14 @@ Crear la base de datos vacía en phpmyadmin, ponerla en el .env y ejecutar php a
 ```
 
 Para trabajar, necesitaréis tener **dos terminales** corriendo simultáneamente:
+
 1. `php artisan serve` (Servidor backend)
 2. `npm run dev` (Compilador en tiempo real de Tailwind CSS / Vite)
 
 **Usuarios de prueba disponibles:**
+
 - **Admin:** `admin@mangatekaz.com` / Contraseña: `admin123`
 - **Cliente:** `gohan@mangatekaz.com` (o vegeta, o bulma) / Contraseña: `user123`
-
 
 InvalidArgumentException: View [catalogo] not found.
 
@@ -80,18 +83,21 @@ HTML
 Si no se pone el usuario no sabe por qué ha fallado la operación
 
 ### 🔓 Zona Pública
+
 | Ruta a crear | Ruta Web | Variables que os llegan | Descripción |
 | :--- | :--- | :--- | :--- |
 | `catalogo.blade.php` | `/catalogo` | `$mangas`, `$sagas` | Escaparate principal. `$manga->saga->nombre` os dará la categoría. |
 | `detalle.blade.php` | `/catalogo/{id}` | `$manga` | Ficha individual del producto. |
 
 ### 👤 Zona de Cliente Privada (Requiere Login)
+
 | Ruta a crear | Ruta Web | Variables que os llegan | Descripción |
 | :--- | :--- | :--- | :--- |
 | `carrito.blade.php` | `/carrito` | `$carrito` | Muestra el pedido en estado 'pendiente'. Iterar `$carrito->mangas`. |
 | `mis-pedidos.blade.php` | `/mis-pedidos`| `$pedidos` | Historial de compras. |
 
 ### 👑 Zona de Gestión (Solo Admin)
+
 | Ruta a crear | Ruta Web | Variables que os llegan | Descripción |
 | :--- | :--- | :--- | :--- |
 | `admin/dashboard.blade.php` | `/admin` | `$totalMangas`, `$totalPedidos`, `$totalStock`, `$ventasTotales` | Panel resumen con estadísticas. |
@@ -105,12 +111,14 @@ Si no se pone el usuario no sabe por qué ha fallado la operación
 ## 4. 🛒 El Funcionamiento del Carrito
 
 Hemos diseñado el carrito aprovechando la tabla `pedidos`. Funciona así:
+
 1. Cuando un cliente le da a "Añadir al carrito", el backend genera en secreto un pedido con `estado = 'pendiente'`.
 2. Todos los artículos operan sobre la tabla pivot `mangas_pedido`.
 3. Para eliminar/modificar un manga, debéis lanzar un formulario a la ruta `route('carrito.actualizar'` o `route('carrito.eliminar'`.
 4. El botón "Confirmar Pedido" pasará el estado a `'atendido'` y restará el stock de la base de datos automáticamente.
 
 ### Ejemplo de Botón Añadir al Carrito (Para catalogo.blade.php)
+
 ```html
 <form action="{{ route('carrito.anadir') }}" method="POST">
     @csrf
