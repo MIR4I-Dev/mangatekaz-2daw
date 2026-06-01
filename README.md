@@ -2,14 +2,15 @@
 
 ## Breve descripción del proyecto
 
-**MangaTekaZ (MTZ)** es un sistema de biblioteca web funcional para una tienda física dedicada a la venta de mangas de la franquicia *Dragon Ball*.
+**MangaTekaZ (MTZ)** es un pequeño e-commerce funcional dedicada a la venta de tomos de manga originales de la franquicia *Dragon Ball*.
 
 El sistema permite a los usuarios administradores:
 
 - Añadir nuevos mangas.
 - Modificar información errónea de los productos o su stock.
-- Eliminar mangas que no estén disponibles en la tienda física.
-- Marcar los pedidos como realizados.
+- Eliminar mangas que no estén disponibles.
+- Ver un dashboard con información general del negocio.
+- Ver información de los pedidos realizados.
 
 Los usuarios finales podrán únicamente realizar pedidos y consultar el catálogo.
 
@@ -25,16 +26,14 @@ Los usuarios finales podrán únicamente realizar pedidos y consultar el catálo
 - Actualizar el stock de los productos.
 - Insertar nuevos mangas relacionados con la franquicia.
 - Eliminar mangas o modificar información errónea.
-- Revisar el historial de pedidos y marcarlos como realizados cuando el cliente se persone en la tienda física.
+- Revisar el historial de pedidos.
 
 ## Valor añadido del proyecto
 
-El valor diferencial de MTZ reside en su enfoque de nicho especializado. A diferencia de las plataformas genéricas, este sistema está diseñado para el mercado del coleccionismo de *Dragon Ball*, permitiendo catalogar reliquias, ediciones descatalogadas (como las traducciones clásicas y fieles) o series específicas como *Dragon Ball Heroes*.
-
-Además, su arquitectura permite que funcione como una plantilla escalable para la digitalización de cualquier comercio físico de nicho.
+El valor diferencial de MTZ reside en su enfoque de nicho especializado. A diferencia de las plataformas genéricas, este sistema está diseñado para el mercado del coleccionismo de mangas originales.
 
 ## Stack tecnológico requerido
 
-- **Frontend**: HTML5, CSS3 y JavaScript para una interfaz temática.
+- **Frontend**: Blade (HTML) y Tailwind CSS para una interfaz temática.
 - **Backend**: PHP con Laravel y arquitectura MVC para la lógica de negocio.
 - **Base de datos**: MySQL para almacenar información de los mangas, las categorías, los pedidos realizados, los usuarios, etc.

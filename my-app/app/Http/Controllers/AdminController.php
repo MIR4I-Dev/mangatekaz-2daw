@@ -11,9 +11,9 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $totalMangas  = Manga::count();
+        $totalMangas = Manga::count();
         $totalPedidos = Pedido::where('estado', '!=', 'pendiente')->count();
-        $totalStock   = Manga::sum('stock');
+        $totalStock = Manga::sum('stock');
         $ventasTotales = Pedido::where('estado', 'atendido')->sum('precio_total');
 
         return view('admin.dashboard', compact('totalMangas', 'totalPedidos', 'totalStock', 'ventasTotales'));
@@ -84,21 +84,10 @@ class AdminController extends Controller
     public function pedidos()
     {
         $pedidos = Pedido::with(['user', 'mangas'])
-                         ->where('estado', '!=', 'pendiente')
-                         ->orderBy('created_at', 'desc')
-                         ->get();
+            ->where('estado', '!=', 'pendiente')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('admin.pedidos.index', compact('pedidos'));
-    }
-
-    public function actualizarEstadoPedido(Request $request, $id)
-    {
-        $request->validate([
-            'estado' => 'required|in:pendiente,atendido',
-        ]);
-        $pedido = Pedido::findOrFail($id);
-        $pedido->update(['estado' => $request->estado]);
-
-        return redirect()->route('admin.pedidos.index')->with('success', 'Estado del pedido actualizado.');
     }
 }

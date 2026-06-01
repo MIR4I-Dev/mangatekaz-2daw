@@ -1,17 +1,95 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
+    <div class="min-h-screen bg-orange-50 py-10">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mb-10">
+                <h1 class="text-5xl font-extrabold text-gray-900 uppercase">
+                    Panel Admin
+                </h1>
+
+                <p class="text-gray-600 mt-2">
+                    Control total de MangaTekaZ
+                </p>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <div class="bg-white border-4 border-gray-800 rounded-xl shadow p-6">
+                    <p class="text-sm font-bold text-gray-500 uppercase">
+                        Mangas Totales
+                    </p>
+
+                    <h2 class="text-5xl font-extrabold text-orange-600 mt-4">
+                        {{ $totalMangas }}
+                    </h2>
+                </div>
+
+                <div class="bg-white border-4 border-gray-800 rounded-xl shadow p-6">
+                    <p class="text-sm font-bold text-gray-500 uppercase">
+                        Pedidos
+                    </p>
+
+                    <h2 class="text-5xl font-extrabold text-blue-900 mt-4">
+                        {{ $totalPedidos }}
+                    </h2>
+                </div>
+
+                <div class="bg-white border-4 border-gray-800 rounded-xl shadow p-6">
+                    <p class="text-sm font-bold text-gray-500 uppercase">
+                        Stock Total
+                    </p>
+
+                    <h2 class="text-5xl font-extrabold text-green-700 mt-4">
+                        {{ $totalStock }}
+                    </h2>
+                </div>
+
+                <div class="bg-white border-4 border-gray-800 rounded-xl shadow p-6">
+                    <p class="text-sm font-bold text-gray-500 uppercase">
+                        Ventas Totales
+                    </p>
+
+                    <h2 class="text-5xl font-extrabold text-red-600 mt-4">
+                        {{ $ventasTotales }}€
+                    </h2>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+
+                <a 
+                    href="/admin/mangas"
+                    class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 hover:scale-105 transition"
+                >
+                    <h2 class="text-3xl font-extrabold text-orange-600 mb-2">
+                        Gestión de Mangas
+                    </h2>
+
+                    <p class="text-gray-600">
+                        Crear, editar y eliminar mangas.
+                    </p>
+                </a>
+
+                <a 
+                    href="/admin/pedidos"
+                    class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 hover:scale-105 transition"
+                >
+                    <h2 class="text-3xl font-extrabold text-blue-900 mb-2">
+                        Gestión de Pedidos
+                    </h2>
+
+                    <p class="text-gray-600">
+                        Revisar y actualizar pedidos.
+                    </p>
+                </a>
+
+            </div>
+
         </div>
+
     </div>
+
 </x-app-layout>

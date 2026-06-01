@@ -1,20 +1,56 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Añadir Nuevo Manga') }}
-        </h2>
-    </x-slot>
+    <div class="min-h-screen bg-orange-50 py-10">
+        <div class="max-w-4xl mx-auto px-6">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    
-                    <p class="mb-4">Formulario para crear manga (POST a {{ route('admin.mangas.store') }})</p>
-                    <!-- Inyectado por backend: $sagas -->
-                    
+            <h1 class="text-5xl font-extrabold uppercase mb-8 text-center">
+                Añadir manga
+            </h1>
+
+            <form action="{{ route('admin.mangas.store') }}" method="POST"
+                class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 space-y-5">
+                @csrf
+
+                <input name="titulo" placeholder="Título" class="w-full border-2 border-gray-800 rounded p-3">
+
+                <input name="autor" placeholder="Autor" class="w-full border-2 border-gray-800 rounded p-3">
+
+                <input name="volumen" type="number" placeholder="Volumen"
+                    class="w-full border-2 border-gray-800 rounded p-3">
+
+                <input name="precio" type="number" step="0.01" min="0" placeholder="Precio"
+                    class="w-full border-2 border-gray-800 rounded p-3">
+
+                <input name="stock" type="number" min="0" placeholder="Stock"
+                    class="w-full border-2 border-gray-800 rounded p-3">
+
+                <input name="imagen" placeholder="URL de OpenLibrary"
+                    class="w-full border-2 border-gray-800 rounded p-3"
+                    value="/storage/covers/dragonball/z/super/X.jpg">
+
+                <textarea name="descripcion" placeholder="Descripción"
+                    class="w-full border-2 border-gray-800 rounded p-3 min-h-32"></textarea>
+
+                <select name="sagas_id" class="w-full border-2 border-gray-800 rounded p-3">
+                    @foreach($sagas as $saga)
+                        <option value="{{ $saga->id }}">
+                            {{ $saga->nombre }}
+                        </option>
+                    @endforeach
+                </select>
+
+                <div class="flex gap-4">
+                    <button type="submit"
+                        class="bg-orange-600 text-white font-extrabold px-6 py-3 rounded-lg border-2 border-gray-900">
+                        Guardar manga
+                    </button>
+
+                    <a href="/admin/mangas"
+                        class="bg-gray-800 text-white font-extrabold px-6 py-3 rounded-lg flex flex-col justify-center align-center">
+                        Cancelar
+                    </a>
                 </div>
-            </div>
+            </form>
+
         </div>
     </div>
 </x-app-layout>

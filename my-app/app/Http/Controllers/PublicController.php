@@ -14,12 +14,14 @@ class PublicController extends Controller
 {
     public function catalogo(Request $request)
     {
-        $mangas = Manga::with('saga')->when($request->saga_id, function ($query, $saga_id) {
-            $query->where('sagas_id', $saga_id);
+        $mangas = Manga::with('saga')->when($request->saga, function ($query, $saga) {
+            $query->where('sagas_id', $saga);
         })->get();
         $sagas = Saga::all();
+        $seleccionada = $request->saga;
 
-        return view('catalogo', compact('mangas', 'sagas'));
+        return view('catalogo', compact('mangas', 'sagas', 'seleccionada'));
+
     }
 
     public function detalle($id)
@@ -100,7 +102,7 @@ class PublicController extends Controller
     public function confirmarPedido()
     {
         $carrito = $this->obtenerCarrito();
-        
+
         if ($carrito->mangas->isEmpty()) {
             return back()->with('error', 'El carrito está vacío.');
         }
@@ -108,6 +110,9 @@ class PublicController extends Controller
         foreach ($carrito->mangas as $manga) {
             $manga->decrement('stock', $manga->pivot->cantidad);
         }
+
+        $carrito->update(['estado' => 'atendido']);
+
         Mail::to(Auth::user()->email)->send(new PedidoConfirmado($carrito));
 
         return redirect()->route('mis-pedidos')->with('success', 'Pedido confirmado con éxito.');
@@ -124,10 +129,10 @@ class PublicController extends Controller
     public function misPedidos()
     {
         $pedidos = Pedido::with('mangas')
-                         ->where('user_id', Auth::id())
-                         ->where('estado', 'atendido')
-                         ->orderBy('created_at', 'desc')
-                         ->get();
+            ->where('user_id', Auth::id())
+            ->where('estado', 'atendido')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('mis-pedidos', compact('pedidos'));
     }
