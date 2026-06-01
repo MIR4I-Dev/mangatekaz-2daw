@@ -160,7 +160,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($datos_db as $i => $data) {
             $mangas_db[] = Manga::create([
-                'titulo' => "Vol. " . ($i + 1) . ": " . $data['titulo'],
+                'titulo' => $data['titulo'],
                 'autor' => 'Akira Toriyama',
                 'volumen' => $i + 1,
                 'precio' => $data['precio'],
@@ -333,7 +333,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($datos_dbz as $i => $data) {
             $mangas_dbz[] = Manga::create([
-                'titulo' => "Vol. " . ($i + 1) . ": " . $data['titulo'],
+                'titulo' => $data['titulo'],
                 'autor' => 'Akira Toriyama',
                 'volumen' => $i + 1,
                 'precio' => $data['precio'],
@@ -470,7 +470,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($datos_dbs as $i => $data) {
             $mangas_dbs[] = Manga::create([
-                'titulo' => "Vol. " . ($i + 1) . ": " . $data['titulo'],
+                'titulo' => $data['titulo'],
                 'autor' => 'Toyotarou / Akira Toriyama',
                 'volumen' => $i + 1,
                 'precio' => $data['precio'],

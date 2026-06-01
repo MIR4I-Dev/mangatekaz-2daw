@@ -12,7 +12,7 @@
                 class="bg-white border-4 border-gray-800 rounded-2xl shadow-xl p-8 grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-10">
 
                 <div>
-                    <img src="{{ $manga->imagen }}" class="w-full h-full object-cover rounded-xl bg-gray-200">
+                    <img src="{{ asset($manga->imagen) }}" class="w-full h-full object-cover rounded-xl bg-gray-200">
                 </div>
 
                 <div>

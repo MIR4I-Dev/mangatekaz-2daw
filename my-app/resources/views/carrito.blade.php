@@ -15,7 +15,7 @@
                         @foreach($carrito->mangas as $manga)
                             <div class="bg-white border-4 border-gray-800 rounded-xl shadow p-4 flex gap-4">
 
-                                <img src="{{ $manga->imagen }}" class="w-28 h-36 object-cover rounded bg-gray-200">
+                                <img src="{{ asset($manga->imagen) }}" class="w-28 h-36 object-cover rounded bg-gray-200">
 
                                 <div class="flex-1">
                                     <h2 class="text-2xl font-extrabold">

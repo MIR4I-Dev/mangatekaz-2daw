@@ -7,7 +7,7 @@
             </h1>
 
             <form action="{{ route('admin.mangas.store') }}" method="POST"
-                class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 space-y-5">
+                class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 space-y-5" enctype="multipart/form-data">
                 @csrf
 
                 <input name="titulo" placeholder="Título" class="w-full border-2 border-gray-800 rounded p-3">
@@ -23,9 +23,10 @@
                 <input name="stock" type="number" min="0" placeholder="Stock"
                     class="w-full border-2 border-gray-800 rounded p-3">
 
-                <input name="imagen" placeholder="URL de OpenLibrary"
-                    class="w-full border-2 border-gray-800 rounded p-3"
-                    value="/storage/covers/dragonball/z/super/X.jpg">
+                <div class="w-full border-2 border-gray-800 rounded p-3 bg-gray-50">
+                    <label for="imagen" class="block text-sm font-bold text-gray-700 mb-1">Portada del Manga:</label>
+                    <input id="imagen" name="imagen" type="file" accept="image/*" class="w-full cursor-pointer">
+                </div>
 
                 <textarea name="descripcion" placeholder="Descripción"
                     class="w-full border-2 border-gray-800 rounded p-3 min-h-32"></textarea>

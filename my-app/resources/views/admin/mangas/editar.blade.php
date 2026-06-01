@@ -7,7 +7,7 @@
             </h1>
 
             <form action="{{ route('admin.mangas.update', $manga->id) }}" method="POST"
-                class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 space-y-5">
+                class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 space-y-5" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -24,7 +24,13 @@
                 <input name="stock" type="number" value="{{ $manga->stock }}"
                     class="w-full border-2 border-gray-800 rounded p-3">
 
-                <input name="imagen" value="{{ $manga->imagen }}" class="w-full border-2 border-gray-800 rounded p-3">
+                <div class="w-full border-2 border-gray-800 rounded p-3 bg-gray-50 space-y-3">
+                    <p class="block text-sm font-bold text-gray-700">Portada actual:</p>
+                    <img src="{{ asset($manga->imagen) }}" class="w-24 border-2 border-gray-800 rounded shadow">
+
+                    <label for="imagen" class="block text-sm font-bold text-gray-700">Cambiar portada:</label>
+                    <input id="imagen" name="imagen" type="file" accept="image/*" class="w-full cursor-pointer">
+                </div>
 
                 <textarea name="descripcion"
                     class="w-full border-2 border-gray-800 rounded p-3 min-h-32">{{ $manga->descripcion }}</textarea>

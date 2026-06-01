@@ -32,7 +32,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($mangas as $manga)
                     <div class="bg-white border-4 border-gray-800 rounded-xl p-4 shadow-lg">
-                        <img src="{{ $manga->imagen }}" class="w-full h-96 object-cover rounded bg-gray-200"
+                        <img src="{{ asset($manga->imagen) }}" class="w-full h-96 object-cover rounded bg-gray-200"
                             alt="{{ $manga->titulo }}">
 
                         <div class="mt-4">
