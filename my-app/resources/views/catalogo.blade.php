@@ -49,7 +49,7 @@
                             </p>
 
                             <div class="flex justify-between text-sm mt-4">
-                                <span>Volumen {{ $manga->volumen }}</span>
+                                <span>Volumen {{ $manga->volumen ?? 'No disponible' }}</span>
                                 @if ($manga->stock == 0)
                                     <span class="text-red-700">Agotado</span>
                                 @else

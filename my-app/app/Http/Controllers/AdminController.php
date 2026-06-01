@@ -36,16 +36,17 @@ class AdminController extends Controller
     {
         $request->validate([
             'titulo' => 'required|string|max:255',
-            'autor' => 'required|string',
-            'volumen' => 'required|integer',
+            'autor' => 'nullable|string',
+            'volumen' => 'nullable|integer',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'sagas_id' => 'required|exists:sagas,id',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ]);
 
         $saga = Saga::findOrFail($request->sagas_id);
         $nombreCarpetaSaga = Str::slug($saga->nombre, '');
+        $rutaParaBD = 'No disponible';
 
         if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
@@ -80,8 +81,8 @@ class AdminController extends Controller
         $manga = Manga::findOrFail($id);
         $request->validate([
             'titulo' => 'required|string|max:255',
-            'autor' => 'required|string',
-            'volumen' => 'required|integer',
+            'autor' => 'nullable|string',
+            'volumen' => 'nullable|integer',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'sagas_id' => 'required|exists:sagas,id',

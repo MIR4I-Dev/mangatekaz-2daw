@@ -10,7 +10,7 @@
                 class="bg-white border-4 border-gray-800 rounded-xl shadow p-8 space-y-5" enctype="multipart/form-data">
                 @csrf
 
-                <input name="titulo" placeholder="Título" class="w-full border-2 border-gray-800 rounded p-3">
+                <input name="titulo" placeholder="Título" class="w-full border-2 border-gray-800 rounded p-3" required>
 
                 <input name="autor" placeholder="Autor" class="w-full border-2 border-gray-800 rounded p-3">
 
@@ -18,10 +18,10 @@
                     class="w-full border-2 border-gray-800 rounded p-3">
 
                 <input name="precio" type="number" step="0.01" min="0" placeholder="Precio"
-                    class="w-full border-2 border-gray-800 rounded p-3">
+                    class="w-full border-2 border-gray-800 rounded p-3" required>
 
                 <input name="stock" type="number" min="0" placeholder="Stock"
-                    class="w-full border-2 border-gray-800 rounded p-3">
+                    class="w-full border-2 border-gray-800 rounded p-3" required>
 
                 <div class="w-full border-2 border-gray-800 rounded p-3 bg-gray-50">
                     <label for="imagen" class="block text-sm font-bold text-gray-700 mb-1">Portada del Manga:</label>
@@ -31,7 +31,7 @@
                 <textarea name="descripcion" placeholder="Descripción"
                     class="w-full border-2 border-gray-800 rounded p-3 min-h-32"></textarea>
 
-                <select name="sagas_id" class="w-full border-2 border-gray-800 rounded p-3">
+                <select name="sagas_id" class="w-full border-2 border-gray-800 rounded p-3" required>
                     @foreach($sagas as $saga)
                         <option value="{{ $saga->id }}">
                             {{ $saga->nombre }}

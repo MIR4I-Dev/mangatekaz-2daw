@@ -11,7 +11,8 @@
                 @csrf
                 @method('PUT')
 
-                <input name="titulo" value="{{ $manga->titulo }}" class="w-full border-2 border-gray-800 rounded p-3">
+                <input name="titulo" value="{{ $manga->titulo }}" class="w-full border-2 border-gray-800 rounded p-3"
+                    required>
 
                 <input name="autor" value="{{ $manga->autor }}" class="w-full border-2 border-gray-800 rounded p-3">
 
@@ -19,10 +20,10 @@
                     class="w-full border-2 border-gray-800 rounded p-3">
 
                 <input name="precio" type="number" step="0.01" value="{{ $manga->precio }}"
-                    class="w-full border-2 border-gray-800 rounded p-3">
+                    class="w-full border-2 border-gray-800 rounded p-3" required>
 
                 <input name="stock" type="number" value="{{ $manga->stock }}"
-                    class="w-full border-2 border-gray-800 rounded p-3">
+                    class="w-full border-2 border-gray-800 rounded p-3" required>
 
                 <div class="w-full border-2 border-gray-800 rounded p-3 bg-gray-50 space-y-3">
                     <p class="block text-sm font-bold text-gray-700">Portada actual:</p>

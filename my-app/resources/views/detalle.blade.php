@@ -40,7 +40,8 @@
                     </h1>
 
                     <p class="text-gray-700 mt-4 text-lg">
-                        Por {{ $manga->autor }} | Vol. {{ $manga->volumen }}
+                        Por {{ $manga->autor ?? 'Autor no disponible' }} | Vol.
+                        {{ $manga->volumen ?? 'No disponible' }}
                     </p>
 
                     <p class="text-5xl text-orange-600 font-extrabold mt-6">
@@ -48,7 +49,7 @@
                     </p>
 
                     <div class="bg-orange-100 rounded-lg p-4 mt-6">
-                        {{ $manga->descripcion }}
+                        {{ $manga->descripcion ?? 'Descripción no disponible' }}
                     </div>
 
                     <div class="bg-gray-100 border rounded-xl p-6 mt-8">
